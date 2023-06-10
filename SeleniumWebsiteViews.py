@@ -60,8 +60,8 @@ url_status_test = {
     "https://info.crezalo.com": [1, 1000, 1000]
 }
 
-with open('http_proxies.txt', "r") as f:
-    proxies = f.read().split("\n")
+# with open('http_proxies.txt', "r") as f:
+#     proxies = f.read().split("\n")
 
 # global variable index of dict to consume
 index = 0
