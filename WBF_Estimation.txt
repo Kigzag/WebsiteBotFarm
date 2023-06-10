@@ -1,0 +1,43 @@
+1. 400 creators with avg 10 fans associated to a creator 
+2. 50 creators  have courses enabled, with avg of 2 courses per creator, each course have around 10 videos
+3. 200 creators have premium videos enabled, with an avg of 8 videos per creator
+4. 50 creators have merch enabled, with an avg of 5 merch per creator
+5. all 400 creators have tips enabled
+
+
+what is the number of daily visits each page should get?
+
+home  250
+editprofile  20
+bankinfo  5
+orders   300
+revenue  350
+creatorprofile/?address=username 2500
+kycapproval 10
+merch/?productid=productid 500
+videoplayer/?videoid=videoid ( 1000 + 1600 ) total videos * 0.5 views = 1300
+course/?courseid=courseid (100) * 3 = 300
+checkout/?stage=0  4000 * 0.01 = 400
+checkout/?stage=1  4000 * 0.001 = 40
+checkout/?stage=2  4000 * 0.002 = 80
+
+crezalo.com total 6055 page views a day
+
+info.crezalo.com total 1000 page views a day
+
+
+Url,SecondsToStay,IterationsLeft
+home,60,250
+editprofile,10,20
+bankinfo,2,5
+orders,5,300
+revenue,15,350
+creatorprofile/?address=username,10,2500
+kycapproval,10,10
+merch/?productid=productid,10,500
+videoplayer/?videoid=videoid,60,1300
+course/?courseid=courseid,20,300
+checkout/?stage=0,5,400
+checkout/?stage=1,2,40
+checkout/?stage=2,10,80
+info,33,1000
