@@ -99,7 +99,7 @@ class viewBot:
         # self.chrome_options.add_experimental_option(
         #     "prefs", {"profile.default_content_setting_values.cookies": 2}
         # )
-        # self.chrome_options.add_argument("--headless")
+        self.chrome_options.add_argument("--headless")
         # chrome_options.headless = True # also works
         # sleep(0.1)
         driver = webdriver.Chrome(
