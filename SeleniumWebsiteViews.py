@@ -79,7 +79,6 @@ class viewBot:
         self.chrome_options.add_argument("--disable-gpu")
         # self.chrome_options.add_argument(f'--proxy-server={proxy}')
         self.chrome_options.add_argument("--window-size=1920,1080")
-        self.chrome_options.add_argument("--enable-javascript")
         self.chrome_options.add_argument('--disable-dev-shm-usage')
         self.chrome_options.add_experimental_option("excludeSwitches",
                                                     ["enable-automation"])
