@@ -43,20 +43,20 @@ url_status = {
 }
 
 url_status_test = {
-    # "https://www.crezalo.com": [1, 250, 250],
-    # "https://www.crezalo.com/editprofile": [1, 20, 20],
-    # "https://www.crezalo.com/bankinfo": [1, 5, 5],
-    # "https://www.crezalo.com/orders": [1, 300, 300],
-    # "https://www.crezalo.com/revenue": [1, 350, 350],
-    # "https://www.crezalo.com/creatorprofile/?address=username":
-    # [1, 2500, 2500],
-    # "https://www.crezalo.com/kycapproval": [1, 10, 10],
-    # "https://www.crezalo.com/merch/?productid=productid": [1, 500, 500],
-    # "https://www.crezalo.com/videoplayer/?videoid=videoid": [1, 1300, 1300],
-    # "https://www.crezalo.com/course/?courseid=courseid": [1, 300, 300],
-    # "https://www.crezalo.com/checkout/?stage=0": [1, 400, 400],
-    # "https://www.crezalo.com/checkout/?stage=1": [1, 40, 40],
-    # "https://www.crezalo.com/checkout/?stage=2": [1, 80, 80],
+    "https://www.crezalo.com": [1, 250, 250],
+    "https://www.crezalo.com/editprofile": [1, 20, 20],
+    "https://www.crezalo.com/bankinfo": [1, 5, 5],
+    "https://www.crezalo.com/orders": [1, 300, 300],
+    "https://www.crezalo.com/revenue": [1, 350, 350],
+    "https://www.crezalo.com/creatorprofile/?address=username":
+    [1, 2500, 2500],
+    "https://www.crezalo.com/kycapproval": [1, 10, 10],
+    "https://www.crezalo.com/merch/?productid=productid": [1, 500, 500],
+    "https://www.crezalo.com/videoplayer/?videoid=videoid": [1, 1300, 1300],
+    "https://www.crezalo.com/course/?courseid=courseid": [1, 300, 300],
+    "https://www.crezalo.com/checkout/?stage=0": [1, 400, 400],
+    "https://www.crezalo.com/checkout/?stage=1": [1, 40, 40],
+    "https://www.crezalo.com/checkout/?stage=2": [1, 80, 80],
     "https://info.crezalo.com": [1, 1000, 1000]
 }
 
@@ -74,11 +74,13 @@ class viewBot:
         # proxy = random.choice(proxies)
         # print(proxy)
         self.chrome_options = Options()
+        self.chrome_options.add_argument("--no-sandbox")  # linux only
         self.chrome_options.add_argument("--disable-extensions")
         self.chrome_options.add_argument("--disable-gpu")
-        self.chrome_options.add_argument("--no-sandbox")  # linux only
         # self.chrome_options.add_argument(f'--proxy-server={proxy}')
         self.chrome_options.add_argument("--window-size=1920,1080")
+        self.chrome_options.add_argument("--enable-javascript")
+        self.chrome_options.add_argument('--disable-dev-shm-usage')
         self.chrome_options.add_experimental_option("excludeSwitches",
                                                     ["enable-automation"])
         self.chrome_options.add_experimental_option("useAutomationExtension",
@@ -136,13 +138,15 @@ class viewBot:
                 driver.get(url)
                 sleep(url_status_test[url][0])
                 url_status_test[url][1] -= 1
-                driver.close()
+                driver.quit()
                 print(url_status_test[url])
                 return True
             else:
+                driver.quit()
                 print(url_status_test[url])
                 return True
         except Exception as e:
+            driver.quit()
             print(e)
             return False
 
