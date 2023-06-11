@@ -25,21 +25,22 @@ import random
 # global variable dict
 # url => [secondstostay, iter_left, total_iter_per_day]
 url_status = {
-    "https://www.crezalo.com": [60, 250, 250],
+    "https://www.crezalo.com": [60 - 5, 250, 250],
     "https://www.crezalo.com/editprofile": [10, 20, 20],
     "https://www.crezalo.com/bankinfo": [2, 5, 5],
     "https://www.crezalo.com/orders": [5, 300, 300],
-    "https://www.crezalo.com/revenue": [15, 350, 350],
+    "https://www.crezalo.com/revenue": [15 - 2, 350, 350],
     "https://www.crezalo.com/creatorprofile/?address=username":
     [10, 2500, 2500],
     "https://www.crezalo.com/kycapproval": [10, 10, 10],
     "https://www.crezalo.com/merch/?productid=productid": [10, 500, 500],
-    "https://www.crezalo.com/videoplayer/?videoid=videoid": [60, 1300, 1300],
-    "https://www.crezalo.com/course/?courseid=courseid": [20, 300, 300],
+    "https://www.crezalo.com/videoplayer/?videoid=videoid":
+    [60 - 5, 1300, 1300],
+    "https://www.crezalo.com/course/?courseid=courseid": [20 - 5, 300, 300],
     "https://www.crezalo.com/checkout/?stage=0": [5, 400, 400],
     "https://www.crezalo.com/checkout/?stage=1": [2, 40, 40],
     "https://www.crezalo.com/checkout/?stage=2": [10, 80, 80],
-    "https://info.crezalo.com": [32, 1000, 1000]
+    "https://info.crezalo.com": [32 - 5, 1000, 1000]
 }
 
 url_status_test = {
@@ -121,28 +122,28 @@ class viewBot:
         self.viewBotCrawler(driver)
 
     def viewBotCrawler(self, driver):
-        global url_status_test
+        global url_status
         global index
 
         try:
-            url = list(url_status_test.keys())[index]
+            url = list(url_status.keys())[index]
 
             index += 1
-            if index > len(list(url_status_test.keys())) - 1:
+            if index > len(list(url_status.keys())) - 1:
                 index = 0
 
             print(url)
-            if url_status_test[url][1] > 1:
+            if url_status[url][1] > 1:
                 driver.delete_all_cookies()
                 driver.get(url)
-                sleep(url_status_test[url][0])
-                url_status_test[url][1] -= 1
+                sleep(url_status[url][0])
+                url_status[url][1] -= 1
                 driver.quit()
-                print(url_status_test[url])
+                print(url_status[url])
                 return True
             else:
                 driver.quit()
-                print(url_status_test[url])
+                print(url_status[url])
                 return True
         except Exception as e:
             driver.quit()
